@@ -11,7 +11,8 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(Exception.class) // If any method or controller throws an exception of type Exception,
+    // call this handler method instead of crashing or returning a default error.
     public ResponseEntity<ExceptionResponse> ExceptionHandler(Exception ex,
                                                               WebRequest webRequest){
         ExceptionResponse response = new ExceptionResponse(ex.getMessage(),
