@@ -1,5 +1,6 @@
 package com.zosh.controller;
 
+import com.zosh.exception.UserException;
 import com.zosh.model.User;
 import com.zosh.repository.UserRepository;
 import jakarta.validation.Valid;
@@ -31,7 +32,7 @@ public class UserController {
         if(opt.isPresent()){
             return opt.get();
         }
-        throw new Exception("User not found with id: " + id);
+        throw new UserException("User not found with id: " + id);
     }
 
     @PutMapping("api/users/{id}")
@@ -49,7 +50,7 @@ public class UserController {
 
             return userRepository.save(existingUser);
         }
-        throw new Exception("User not found with id: " + id);
+        throw new UserException("User not found with id: " + id);
     }
 
     @DeleteMapping("/api/users/{id}")
@@ -60,7 +61,7 @@ public class UserController {
             userRepository.delete(existingUser);
         }
         else{
-            throw new Exception("User not found with id " + id);
+            throw new UserException("User not found with id " + id);
         }
     }
 
